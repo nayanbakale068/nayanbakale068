@@ -1,0 +1,39 @@
+Code:
+
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+int main()
+{
+ofstream outFile("output.txt");
+if (!outFile.is_open())
+{
+cerr << "Error opening the output file." << endl;
+return 1;
+}
+outFile << "Hello, Second Year Students" << endl;
+outFile << "Welcome to I2IT" << endl;
+outFile << "We are writing a file operation program." <<
+endl;
+outFile << "Let's Begin........" << endl;
+outFile.close();
+ifstream inFile("output.txt");
+if (!inFile.is_open())
+{
+cerr << "Error opening the input file." << endl;
+return 1;
+}
+string line;
+cout << "Contents of the input file:" << endl;
+while (getline(inFile, line))
+{
+cout << line << endl;
+}
+inFile.close();
+
+return 0;
+}
+Output:
+
+

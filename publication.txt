@@ -1,0 +1,102 @@
+Code:
+#include <iostream>
+#include <string.h>
+#include <exception>
+using namespace std;
+class Publication
+{
+private:
+string title;
+float price;
+public:
+Publication()
+{
+this->title = "";
+this->price = 0.0;
+}
+void getData()
+{
+cout << "Enter title: ";
+cin >> title;
+cout << "Enter price: ";
+cin >> price;
+}
+void display()
+{
+cout<<"\n";
+cout << "Title: " << title << endl;
+cout << "Price: Rs." << price << endl;
+}
+};
+class Book: public Publication
+{
+private:
+int page_count;
+public:
+Book()
+{
+this->page_count = 0;
+}
+void getData()
+{
+Publication::getData();
+
+cout<<"Enter page count: ";
+cin>>page_count;
+}
+void display()
+{
+Publication::display();
+cout<<"Page Count: "<<page_count<<endl;
+cout<<"\n";
+}
+};
+class Tape : public Publication
+{
+private:
+float time;
+public:
+Tape()
+{
+this->time = 0.0;
+}
+void getData()
+{
+Publication::getData();
+cout<<"Enter time: ";
+cin>>time;
+}
+void display()
+{
+Publication::display();
+cout<<"Time: "<<time<<endl;
+cout<<"\n";
+}
+};
+int main()
+{
+Book book;
+Tape tape;
+try
+{
+cout<<"Enter book details: \n";
+book.getData();
+
+cout<<"Enter tape details: \n";
+tape.getData();
+cout<<"Book details: \n";
+book.display();
+cout<<"tape details: \n";
+tape.display();
+}
+catch(const exception& e)
+{
+cerr << e.what() << '\n';
+book = Book();
+tape = Tape();
+}
+}
+
+Output:
+
+

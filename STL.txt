@@ -1,0 +1,113 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+using namespace std;
+
+class student
+{
+    public:
+    int rollno;
+    string name;
+
+    bool operator==(const student &student1 ){
+        return(rollno==student1.rollno);
+    }
+
+    bool operator<(const student &student1){
+        return(rollno<student1.rollno);
+    }
+
+    friend ostream& operator<<(ostream& out, const student &k);
+    friend istream& operator>>(istream& in, const student &k);
+};
+
+ostream &operator<<(ostream& out, const student &k){
+    out << "\n\t\t" << k.rollno <<"\t\t" << k.name;
+    return out;
+}
+istream &operator>>(istream& in, student &k){
+    cout << "\nEnter students rollno: ";
+    in >> k.rollno;
+    cout << "\nEnter students name: ";
+    in >> k.name;
+    return in;
+}
+
+bool myfunc(const student &k, const student &i2){
+    return (k.rollno < i2.rollno);
+}
+
+vector <student> read(){
+    int n;
+    student k;
+    vector <student> j;
+    cout << "\nEnter the total no of students: ";
+    cin >> n;
+    for(int i=0;i<n;i++){
+        cin >> k;
+        j.push_back(k);
+    }
+    return j;
+
+}
+
+void printfunction(const student &k){
+    cout << k;
+}
+
+void print(const vector<student> &j){
+    cout <<"\n\t\tROLLNO\t\tNAME";
+        for_each(j.begin(),j.end(),printfunction);
+}
+
+void insert(vector<student> &j){
+    student k;
+    cout << "\nEnter the student details to insert: ";
+    cin >> k;
+    j.push_back(k);
+
+}
+
+void del(vector<student> &j){
+    cout << "\n";
+    student k;
+    cout << "Enter the rollno to delete: ";
+    cin >> k.rollno;
+    vector <student> :: iterator p;
+    p = find(j.begin(),j.end(),k);
+    if(p!=j.end())
+        j.erase(p);
+    else 
+        cout << "\nNot found";
+}
+
+void search(vector<student> &j){
+    cout << "\n";
+    student k;
+    cout << "Enter the rollno to search: ";
+    cin >> k.rollno;
+    vector <student> :: iterator p;
+    p = find(j.begin(),j.end(),k);
+    if(p!=j.end())
+        cout << *p;
+    else 
+        cout << "\nNot found";
+}
+
+void sort(vector <student> &j){
+    sort(j.begin(),j.end(),myfunc);
+}
+
+int main(){
+    vector <student> j;
+    cout << "Enter student's details: ";
+    j = read();
+    cout << "\nstudent's details: ";
+    print(j);
+    del(j);
+    search(j);
+    cout << "\nSorted list: ";
+    sort(j);
+    print(j);
+}

@@ -1,0 +1,61 @@
+Code:
+#include <iostream>
+using namespace std;
+template <typename T>
+void selectionSort(T arr[], int size)
+{
+for (int i = 0; i < size - 1; ++i)
+{
+int minIndex = i;
+for (int j = i + 1; j < size; ++j)
+{
+if (arr[j] < arr[minIndex])
+{
+minIndex = j;
+}
+}
+T temp = arr[i];
+arr[i] = arr[minIndex];
+arr[minIndex] = temp;
+}
+}
+int main()
+{
+int intArraySize, floatArraySize;
+cout << "Enter the size of the integer array: ";
+cin >> intArraySize;
+cout << "Enter the size of the float array: ";
+cin >> floatArraySize;
+int *intArray = new int[intArraySize];
+float *floatArray = new float[floatArraySize];
+cout << "Enter integer numbers to sort: ";
+for (int i = 0; i < intArraySize; ++i)
+{
+cin >> intArray[i];
+}
+cout << "Enter floating numbers to sort: ";
+for (int i = 0; i < floatArraySize; ++i)
+{
+cin >> floatArray[i];
+}
+
+selectionSort(intArray, intArraySize);
+selectionSort(floatArray, floatArraySize);
+cout << "Sorted Integer Array: \n";
+for (int i = 0; i < intArraySize; i++)
+{
+cout << intArray[i] << " ";
+}
+cout << "\nSorted Float Array: \n";
+for (int i = 0; i < floatArraySize; i++)
+{
+cout << floatArray[i] << " ";
+}
+delete[] intArray;
+delete[] floatArray;
+return 0;
+}
+
+Output:
+
+
